@@ -1,0 +1,162 @@
+\documentclass[a4j]{jarticle}
+
+\input{../preamble}
+
+\begin{document}
+
+\section{多点多変量ガウス分布と正規逆ウィシャート分布}
+
+\begin{eqnarray}
+\prod_{n=1}^{N}{\N{(\boldsymbol{x_n} | \boldsymbol{\mu}, \Sigma)}} \times \NIW(\boldsymbol{\mu}, \Sigma | \boldsymbol{\mu}_0, \lambda_0, \Psi_0, \nu_0)
+\end{eqnarray}
+\begin{eqnarray}
+&\proptoas{\boldsymbol{\mu}, \Sigma}&
+\prod_{n=1}^{N}{|\Sigma|^{-\frac{1}{2}} \exp{\left( -\frac{1}{2}\left(\boldsymbol{\mu}^T \Sigma^{-1}\boldsymbol{\mu} - 2 \boldsymbol{\mu}^T \Sigma^{-1} \boldsymbol{x_n} + \boldsymbol{x_n}^T \Sigma^{-1} \boldsymbol{x_n}\right) \right)}} \nonumber\\
+&&~~\times
+|\Sigma|^{-\frac{\nu_0+D+2}{2}} \exp{\left( -\frac{\lambda_0}{2} \left( \boldsymbol{\mu}^T \Sigma^{-1}\boldsymbol{\mu} - 2 \boldsymbol{\mu}^T \Sigma^{-1} \boldsymbol{\mu_0} + \textrm{tr}\left(\left( \boldsymbol{\mu_0} \boldsymbol{\mu_0}^T + \frac{1}{\lambda_0} \Psi_0 \right) \Sigma^{-1} \right) \right)\right)} \nonumber \\
+\\
+&\proptoas{\boldsymbol{\mu}, \Sigma}&
+|\Sigma|^{-\frac{N}{2}} \exp{\left( -\frac{1}{2} \sum_{n=1}^{N}{\left(\boldsymbol{\mu}^T \Sigma^{-1}\boldsymbol{\mu} - 2 \boldsymbol{\mu}^T \Sigma^{-1} \boldsymbol{x_n} + \boldsymbol{x_n}^T \Sigma^{-1} \boldsymbol{x_n}\right)} \right)} \nonumber\\
+&&~~\times
+|\Sigma|^{-\frac{\nu_0+D+2}{2}} \exp{\left( -\frac{\lambda_0}{2} \left( \boldsymbol{\mu}^T \Sigma^{-1}\boldsymbol{\mu} - 2 \boldsymbol{\mu}^T \Sigma^{-1} \boldsymbol{\mu_0} + \textrm{tr}\left(\left( \boldsymbol{\mu_0} \boldsymbol{\mu_0}^T + \frac{1}{\lambda_0} \Psi_0 \right) \Sigma^{-1} \right) \right)\right)} \nonumber \\
+\\
+&\proptoas{\boldsymbol{\mu}, \Sigma}&
+|\Sigma|^{-\frac{N}{2}} \exp{\left( -\frac{1}{2} \left(N \cdot \boldsymbol{\mu}^T \Sigma^{-1}\boldsymbol{\mu} - 2 N \cdot \boldsymbol{\mu}^T \Sigma^{-1} \boldsymbol{\bar{x}} + \sum_{n=1}^{N}{\boldsymbol{x_n}^T \Sigma^{-1} \boldsymbol{x_n}} \right) \right)} \nonumber\\
+&&~~\times
+|\Sigma|^{-\frac{\nu_0+D+2}{2}} \exp{\left( -\frac{\lambda_0}{2} \left( \boldsymbol{\mu}^T \Sigma^{-1}\boldsymbol{\mu} - 2 \boldsymbol{\mu}^T \Sigma^{-1} \boldsymbol{\mu_0} + \textrm{tr}\left(\left( \boldsymbol{\mu_0} \boldsymbol{\mu_0}^T + \frac{1}{\lambda_0} \Psi_0 \right) \Sigma^{-1} \right) \right)\right)} \nonumber \\
+\end{eqnarray}
+この時，$\boldsymbol{\bar{x}}$は以下の式で定義される．
+\begin{eqnarray}
+\boldsymbol{\bar{x}} &=& \frac{1}{N} \sum_{n=1}^{N}{\boldsymbol{x_n}}
+\end{eqnarray}
+ここで，$|\Sigma|$の部分についてみると，
+\begin{eqnarray}
+|\Sigma|^{- \frac{N}{2}} \times |\Sigma|^{- \frac{\nu_0 + D + 1}{2}} &=& |\Sigma|^{- \frac{(N+\nu_0) + D + 2}{2}}
+\end{eqnarray}
+であることが分かる．
+次に，$\boldsymbol{\mu}$に関する式を確認すると，
+\begin{eqnarray}
+\exp{\left( -\frac{1}{2} \left( N \cdot \boldsymbol{\mu}^T\Sigma^{-1}\boldsymbol{\mu} - 2 N \cdot \boldsymbol{\mu}^T\Sigma^{-1}\boldsymbol{\bar{x}}\right) \right)} \times \exp{\left(- \frac{\lambda_0}{2} \left( \boldsymbol{\mu}^T \Sigma^{-1}\boldsymbol{\mu} - 2 \boldsymbol{\mu}^T \Sigma^{-1} \boldsymbol{\mu_0} \right) \right)}
+\end{eqnarray}
+\begin{eqnarray}
+&=& \exp{\left( - \frac{1}{2} \left( N \cdot \boldsymbol{\mu}^T\Sigma^{-1}\boldsymbol{\mu} - 2 N \cdot \boldsymbol{\mu}^T\Sigma^{-1}\boldsymbol{\bar{x}}  + \lambda_0 \cdot \boldsymbol{\mu}^T \Sigma^{-1}\boldsymbol{\mu} - 2 \lambda_0 \cdot \boldsymbol{\mu}^T \Sigma^{-1} \boldsymbol{\mu_0} \right)\right)}\\
+&=& \exp{\left( - \frac{1}{2} \left( (N + \lambda_0) \cdot \boldsymbol{\mu}^T\Sigma^{-1}\boldsymbol{\mu} - 2 \cdot \boldsymbol{\mu}^T\Sigma^{-1} (N \cdot \boldsymbol{\bar{x}} + \lambda_0 \cdot \boldsymbol{\mu_0}) \right)\right)}\\
+&=& \exp{\left( - \frac{N + \lambda_0}{2} \left( \boldsymbol{\mu}^T\Sigma^{-1}\boldsymbol{\mu} - 2 \cdot \boldsymbol{\mu}^T\Sigma^{-1} \left(\frac{N \cdot \boldsymbol{\bar{x}} + \lambda_0  \cdot \boldsymbol{\mu_0}}{N + \lambda_0}\right) \right)\right)} \label{calc:NIW_post_nu_lambda}
+\end{eqnarray}
+となる．
+最後に，残った項($\boldsymbol{\mu}$の0次の項)について考えると，
+\begin{eqnarray}
+\exp{\left( - \frac{1}{2} \sum_{n=1}^{N}{\boldsymbol{x_n}^T \Sigma^{-1} \boldsymbol{x_n}} \right)} \times \exp{\left( - \frac{\lambda_0}{2} \textrm{tr}\left(\left( \boldsymbol{\mu_0} \boldsymbol{\mu_0}^T + \frac{1}{\lambda_0} \Psi_0 \right) \Sigma^{-1} \right) \right)}
+\end{eqnarray}
+\begin{eqnarray}
+&=& \exp{\left( - \frac{1}{2} \left( \sum_{n=1}^{N}{\boldsymbol{x_n}^T \Sigma^{-1} \boldsymbol{x_n}} + \lambda_0 \cdot \textrm{tr}\left(\left( \boldsymbol{\mu_0} \boldsymbol{\mu_0}^T + \frac{1}{\lambda_0} \Psi_0 \right) \Sigma^{-1} \right) \right) \right)}
+\end{eqnarray}
+となる．
+簡単のために，$\exp{(-\frac{1}{2}(\cdot))}$の中についてのみ計算すると，
+\begin{eqnarray}
+\sum_{n=1}^{N}{\boldsymbol{x_n}^T \Sigma^{-1} \boldsymbol{x_n}} + \lambda_0 \cdot \textrm{tr}\left(\left( \boldsymbol{\mu_0} \boldsymbol{\mu_0}^T + \frac{1}{\lambda_0} \Psi_0 \right) \Sigma^{-1} \right)
+\end{eqnarray}
+\begin{eqnarray}
+&=&
+\sum_{n=1}^{N}{\textrm{tr}\left( \boldsymbol{x_n}^T \Sigma^{-1} \boldsymbol{x_n} \right)} + \lambda_0 \cdot \textrm{tr}\left(\left( \boldsymbol{\mu_0} \boldsymbol{\mu_0}^T + \frac{1}{\lambda_0} \Psi_0 \right) \Sigma^{-1} \right) \\
+&=&
+\sum_{n=1}^{N}{\textrm{tr}\left( \boldsymbol{x_n} \boldsymbol{x_n}^T \Sigma^{-1} \right)} + \lambda_0 \cdot \textrm{tr}\left(\left( \boldsymbol{\mu_0} \boldsymbol{\mu_0}^T + \frac{1}{\lambda_0} \Psi_0 \right) \Sigma^{-1} \right) \\
+&=&
+\textrm{tr}\left( \sum_{n=1}^{N}{\boldsymbol{x_n} \boldsymbol{x_n}^T \Sigma^{-1}} \right) + \lambda_0 \cdot \textrm{tr}\left(\left( \boldsymbol{\mu_0} \boldsymbol{\mu_0}^T + \frac{1}{\lambda_0} \Psi_0 \right) \Sigma^{-1} \right) \\
+&=&
+\textrm{tr}\left( \sum_{n=1}^{N}{\boldsymbol{x_n} \boldsymbol{x_n}^T \Sigma^{-1}} + \lambda_0 \left( \boldsymbol{\mu_0} \boldsymbol{\mu_0}^T + \frac{1}{\lambda_0} \Psi_0 \right) \Sigma^{-1} \right) \\
+&=&
+\textrm{tr}\left( \left( \sum_{n=1}^{N}{\boldsymbol{x_n} \boldsymbol{x_n}^T} + \lambda_0 \cdot \boldsymbol{\mu_0} \boldsymbol{\mu_0}^T + \Psi_0 \right) \Sigma^{-1} \right) \\
+&=&
+\textrm{tr}\left( \left( \sum_{n=1}^{N}{(\boldsymbol{x_n} - \boldsymbol{\bar{x}}) (\boldsymbol{x_n} - \boldsymbol{\bar{x}})^T}  + N \cdot \boldsymbol{\bar{x}} \boldsymbol{\bar{x}}^T + \lambda_0 \cdot \boldsymbol{\mu_0} \boldsymbol{\mu_0}^T + \Psi_0 \right) \Sigma^{-1} \right) \label{calc:NIW_post_Psi}
+\end{eqnarray}
+ここで，
+\begin{eqnarray}
+\sum_{n=1}^{N}{\left(\boldsymbol{x_n} - \boldsymbol{\bar{x}}\right)\left(\boldsymbol{x_n} - \boldsymbol{\bar{x}}\right)^T}
+&=&
+\sum_{n=1}^{N}{\boldsymbol{x_n} \boldsymbol{x_n}^T} - \sum_{n=1}^{N}{\boldsymbol{x_n} \boldsymbol{\bar{x}}^T} - \sum_{n=1}^{N}{\boldsymbol{\bar{x}} \boldsymbol{x_n}^T} + \sum_{n=1}^{N}{\boldsymbol{\bar{x}} \boldsymbol{\bar{x}}^T}\\
+&=& \sum_{n=1}^{N}{\boldsymbol{x_n} \boldsymbol{x_n}^T} - N \cdot \boldsymbol{\bar{x}} \boldsymbol{\bar{x}}^T - N \cdot \boldsymbol{\bar{x}} \boldsymbol{\bar{x}}^T + N \cdot \boldsymbol{\bar{x}} \boldsymbol{\bar{x}}^T\\
+&=&
+\sum_{n=1}^{N}{\boldsymbol{x_n} \boldsymbol{x_n}^T} - N \cdot \boldsymbol{\bar{x}} \boldsymbol{\bar{x}}^T
+\end{eqnarray}
+より，
+\begin{eqnarray}
+\sum_{n=1}^{N}{\boldsymbol{x_n} \boldsymbol{x_n}^T} &=& \sum_{n=1}^{N}{\left(\boldsymbol{x_n} - \boldsymbol{\bar{x}}\right)\left(\boldsymbol{x_n} - \boldsymbol{\bar{x}}\right)^T} + N \cdot \boldsymbol{\bar{x}} \boldsymbol{\bar{x}}^T
+\end{eqnarray}
+を用いた．
+ここで，ここまでで求めた数式が最終的に$\NIW$分布になるには，パラメータを$\boldsymbol{\mu^*}, \lambda^*, \Psi^*, \nu^*$とすると，
+\begin{eqnarray}
+\NIW(\boldsymbol{\mu}, \Sigma | \boldsymbol{\mu^*}, \lambda^*, \Psi^*, \nu^*) \nonumber
+\end{eqnarray}
+\begin{eqnarray}
+&\proptoas{\boldsymbol{\mu}, \Sigma}&
+|\Sigma|^{-\frac{\nu^*+D+2}{2}} \exp{\left( -\frac{\lambda^*}{2} \left( \boldsymbol{\mu}^T \Sigma^{-1}\boldsymbol{\mu} - 2 \boldsymbol{\mu}^T \Sigma^{-1} \boldsymbol{\mu^*} + \textrm{tr}\left(\left( \boldsymbol{\mu^*} \boldsymbol{\mu^*}^T + \frac{1}{\lambda^*} \Psi^* \right) \Sigma^{-1} \right) \right)\right)} \nonumber \\ \label{calc:NIW_post_*}
+\end{eqnarray}
+これらを用いて，式(\ref{calc:NIW_post_*})と式(\ref{calc:NIW_post_nu_lambda})を比べて，
+\begin{eqnarray}
+\nu^* &=& N + \nu_0\\
+\lambda^* &=& N + \lambda_0\\
+\boldsymbol{\mu^*} &=& \frac{N \cdot \boldsymbol{\bar{x}} + \lambda_0  \cdot \boldsymbol{\mu_0}}{N + \lambda_0}
+\end{eqnarray}
+が分かる．
+また，$\boldsymbol{\mu}$の0次の項については，式(\ref{calc:NIW_post_*})の対応する部分を少し変形し，
+\begin{eqnarray}
+\lambda^* \cdot \textrm{tr}\left(\left(\boldsymbol{\mu^*}\boldsymbol{\mu^*}^T + \frac{1}{\lambda^*} \Psi^*\right)\Sigma^{-1}\right) &=& \textrm{tr}\left(\left(\lambda^* \cdot \boldsymbol{\mu^*}\boldsymbol{\mu^*}^T + \Psi^*\right)\Sigma^{-1}\right)
+\end{eqnarray}
+としたうえで，式(\ref{calc:NIW_post_Psi})と比較し，
+\begin{eqnarray}
+\lambda^* \cdot \boldsymbol{\mu^*}\boldsymbol{\mu^*}^T + \Psi^*
+&=&
+\sum_{n=1}^{N}{(\boldsymbol{x_n} - \boldsymbol{\bar{x}}) (\boldsymbol{x_n} - \boldsymbol{\bar{x}})^T}  + N \cdot \boldsymbol{\bar{x}} \boldsymbol{\bar{x}}^T + \lambda_0 \cdot \boldsymbol{\mu_0} \boldsymbol{\mu_0}^T + \Psi_0 \\
+\Psi^*
+&=&
+\sum_{n=1}^{N}{(\boldsymbol{x_n} - \boldsymbol{\bar{x}}) (\boldsymbol{x_n} - \boldsymbol{\bar{x}})^T}  + N \cdot \boldsymbol{\bar{x}} \boldsymbol{\bar{x}}^T + \lambda_0 \cdot \boldsymbol{\mu_0} \boldsymbol{\mu_0}^T + \Psi_0 - \lambda^* \cdot \boldsymbol{\mu^*}\boldsymbol{\mu^*}^T \nonumber\\
+\end{eqnarray}
+また，$\lambda^* \cdot \boldsymbol{\mu^*}\boldsymbol{\mu^*}^T$はそれぞれ$\lambda^*, \boldsymbol{\mu^*}$が既に分かっているので，
+\begin{eqnarray}
+\lambda^* \cdot \boldsymbol{\mu^*}\boldsymbol{\mu^*}^T &=& (N + \lambda_0) \cdot \left( \frac{N \cdot \boldsymbol{\bar{x}} + \lambda_0 \cdot \boldsymbol{\mu_0}}{N + \lambda_0} \right) \left( \frac{N \cdot \boldsymbol{\bar{x}} + \lambda_0 \cdot \boldsymbol{\mu_0}}{N + \lambda_0} \right)^T \\
+&=&
+\frac{1}{N + \lambda_0} \left( N \cdot \boldsymbol{\bar{x}} + \lambda_0 \cdot \boldsymbol{\mu_0} \right) \left( N \cdot \boldsymbol{\bar{x}} + \lambda_0 \cdot \boldsymbol{\mu_0} \right)^T\\
+&=&
+\frac{1}{N + \lambda_0} \left( N^2 \cdot \boldsymbol{\bar{x}} \boldsymbol{\bar{x}}^T + N \lambda_0 \cdot \boldsymbol{\bar{x}} \boldsymbol{\mu_0}^T + N \lambda_0 \cdot \boldsymbol{\mu_0} \boldsymbol{\bar{x}}^T + \lambda_0^2 \cdot \boldsymbol{\mu_0} \boldsymbol{\mu_0}^T \right)
+\end{eqnarray}
+となる．
+よって，
+\begin{eqnarray}
+\Psi^* &=& \sum_{n=1}^{N}{(\boldsymbol{x_n} - \boldsymbol{\bar{x}}) (\boldsymbol{x_n} - \boldsymbol{\bar{x}})^T}  + N \cdot \boldsymbol{\bar{x}} \boldsymbol{\bar{x}}^T + \lambda_0 \cdot \boldsymbol{\mu_0} \boldsymbol{\mu_0}^T + \Psi_0 \nonumber \\
+&&~~ - \frac{1}{N + \lambda_0} \left( N^2 \cdot \boldsymbol{\bar{x}} \boldsymbol{\bar{x}}^T + N \lambda_0 \cdot \boldsymbol{\bar{x}} \boldsymbol{\mu_0}^T + N \lambda_0 \cdot \boldsymbol{\mu_0} \boldsymbol{\bar{x}}^T + \lambda_0^2 \cdot \boldsymbol{\mu_0} \boldsymbol{\mu_0}^T \right) \\
+&=&
+\sum_{n=1}^{N}{(\boldsymbol{x_n} - \boldsymbol{\bar{x}}) (\boldsymbol{x_n} - \boldsymbol{\bar{x}})^T} + \Psi_0 + \left( \frac{N^2 + N \lambda_0 - N^2}{N + \lambda_0} \right) \boldsymbol{\bar{x}} \boldsymbol{\bar{x}}^T \nonumber \\
+&&
+~~ + \left( \frac{N \lambda_0 + \lambda_0^2 - \lambda_0^2}{N + \lambda_0} \right) \boldsymbol{\mu_0} \boldsymbol{\mu_0}^T - \left( \frac{N \lambda_0}{N + \lambda_0} \right) \left( \boldsymbol{\bar{x}} \boldsymbol{\mu_0}^T + \boldsymbol{\mu_0} \boldsymbol{\bar{x}}^T \right) \\
+&=&
+\sum_{n=1}^{N}{(\boldsymbol{x_n} - \boldsymbol{\bar{x}}) (\boldsymbol{x_n} - \boldsymbol{\bar{x}})^T} + \Psi_0 + \left( \frac{N \lambda_0}{N + \lambda_0} \right) \left( \boldsymbol{\bar{x}} \boldsymbol{\bar{x}}^T - \boldsymbol{\bar{x}} \boldsymbol{\mu_0}^T - \boldsymbol{\mu_0} \boldsymbol{\bar{x}}^T + \boldsymbol{\mu_0} \boldsymbol{\mu_0}^T\right) \\
+&=&
+\sum_{n=1}^{N}{(\boldsymbol{x_n} - \boldsymbol{\bar{x}}) (\boldsymbol{x_n} - \boldsymbol{\bar{x}})^T} + \Psi_0 + \left( \frac{N \lambda_0}{N + \lambda_0} \right) \left( \boldsymbol{\bar{x}} - \boldsymbol{\mu_0} \right) \left( \boldsymbol{\bar{x}} - \boldsymbol{\mu_0} \right)^T
+\end{eqnarray}
+となる．
+
+\begin{screen}
+\begin{eqnarray}
+\prod_{n=1}^{N}{\N{(\boldsymbol{x_n} | \boldsymbol{\mu}, \Sigma)}} \times \NIW(\boldsymbol{\mu}, \Sigma | \boldsymbol{\mu}_0, \lambda_0, \Psi_0, \nu_0)
+&\propto& 
+\NIW(\boldsymbol{\mu}, \Sigma | \boldsymbol{\mu^*}, \lambda^*, \Psi^*, \nu^*)
+\end{eqnarray}
+
+ただし
+\begin{eqnarray}
+\nu^*
+&=&
+N + \nu_0\\
+\lambda^* 
+&=&
+N + \lambda_0\\
+\boldsymbol{\mu^*}
+&=&
+\frac{N \cdot \boldsymbol{\bar{x}} + \lambda_0  \cdot \boldsymbol{\mu_0}}{N + \lambda_0}\\
+\Psi^*
+&=&
+\sum_{n=1}^{N}{(\boldsymbol{x_n} - \boldsymbol{\bar{x}}) (\boldsymbol{x_n} - \boldsymbol{\bar{x}})^T} + \Psi_0 + \left( \frac{N \lambda_0}{N + \lambda_0} \right) \left( \boldsymbol{\bar{x}} - \boldsymbol{\mu_0} \right) \left( \boldsymbol{\bar{x}} - \boldsymbol{\mu_0} \right)^T
+\end{eqnarray}
+\end{screen}
+\end{document}

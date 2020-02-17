@@ -1,0 +1,83 @@
+\documentclass[a4j]{jarticle}
+\input{../preamble}
+%\setlength{\jot}{8pt}
+
+\begin{document}
+\section{多変量ガウス分布と多変量ガウス分布(平均)}
+分散共分散行列は固定された状態であることに注意する．
+\begin{eqnarray}
+\N{(\boldsymbol{x} | \boldsymbol{\mu}, \Sigma)}
+\times
+\N{(\boldsymbol{\mu} | \boldsymbol{c}, X)}
+&\propto&
+\exp{\left( -\frac{1}{2} \left( \boldsymbol{x} - \boldsymbol{\mu}\right)^T \Sigma^{-1} \left( \boldsymbol{x} - \boldsymbol{\mu}\right) \right)}
+\times
+\exp{\left( -\frac{1}{2} \left( \boldsymbol{\mu} - \boldsymbol{c}\right)^T X^{-1} \left( \boldsymbol{\mu} - \boldsymbol{c}\right) \right)} \nonumber \\
+&=&
+\exp{\left( -\frac{1}{2} \left( \boldsymbol{x} - \boldsymbol{\mu}\right)^T \Sigma^{-1} \left( \boldsymbol{x} - \boldsymbol{\mu}\right) - \frac{1}{2} \left( \boldsymbol{\mu} - \boldsymbol{c}\right)^T X^{-1} \left( \boldsymbol{\mu} - \boldsymbol{c}\right) \right)}\\
+&=&
+\exp{\left( -\frac{1}{2}\left\{ \left( \boldsymbol{x} - \boldsymbol{\mu}\right)^T \Sigma^{-1} \left( \boldsymbol{x} - \boldsymbol{\mu}\right) + \left( \boldsymbol{\mu} - \boldsymbol{c}\right)^T X^{-1} \left( \boldsymbol{\mu} - \boldsymbol{c}\right) \right\}  \right)}
+\end{eqnarray}
+ここで，$\exp$の中カッコ$\left\{\cdot\right\}$に囲まれた部分について考えると，
+\begin{eqnarray}
+\left\{ \cdot \right\}
+&=&
+\left\{ \left( \boldsymbol{x} - \boldsymbol{\mu}\right)^T \Sigma^{-1} \left( \boldsymbol{x} - \boldsymbol{\mu}\right) + \left( \boldsymbol{\mu} - \boldsymbol{c}\right)^T X^{-1} \left( \boldsymbol{\mu} - \boldsymbol{c}\right) \right\} \\
+&=&
+\left( \boldsymbol{x}^T - \boldsymbol{\mu}^T \right) \Sigma^{-1} \left( \boldsymbol{x} - \boldsymbol{\mu}\right) + \left( \boldsymbol{\mu}^T - \boldsymbol{c}^T\right) X^{-1} \left( \boldsymbol{\mu} - \boldsymbol{c}\right) \\
+&&\nonumber\\
+&=&
+\boldsymbol{x}^T \Sigma^{-1}\boldsymbol{x} -\boldsymbol{x}^T \Sigma^{-1}\boldsymbol{\mu} - \boldsymbol{\mu}^T \Sigma^{-1} \boldsymbol{x} + \boldsymbol{\mu}^T \Sigma^{-1} \boldsymbol{\mu} \nonumber\\
+&& +~~\boldsymbol{\mu}^T X^{-1}\boldsymbol{\mu} -\boldsymbol{\mu}^T X^{-1}\boldsymbol{c} - \boldsymbol{c}^T X^{-1} \boldsymbol{\mu} + \boldsymbol{c}^T X^{-1} \boldsymbol{c}\\
+&&\nonumber\\
+&=&
+\boldsymbol{x}^T \Sigma^{-1}\boldsymbol{x} -2\boldsymbol{\mu}^T \Sigma^{-1}\boldsymbol{x}  + \boldsymbol{\mu}^T \Sigma^{-1} \boldsymbol{\mu} \nonumber\\
+&&+~~\boldsymbol{\mu}^T X^{-1}\boldsymbol{\mu} -2\boldsymbol{\mu}^T X^{-1}\boldsymbol{c} + \boldsymbol{c}^T X^{-1} \boldsymbol{c}\\
+&&\nonumber\\
+&=&
+\boldsymbol{\mu}^T \left(\Sigma^{-1} + X^{-1}\right)\boldsymbol{\mu} -2\boldsymbol{\mu}^T \left(\Sigma^{-1}\boldsymbol{x} + X^{-1}\boldsymbol{c} \right) + \left( \boldsymbol{x}^T \Sigma^{-1}\boldsymbol{x} + \boldsymbol{c}^T X^{-1} \boldsymbol{c} \right)
+\end{eqnarray}
+ここで，これが多変量ガウス分布$\N{(\boldsymbol{\mu} | \hat{\boldsymbol{c}} , \hat{X})}$に従うとすると，
+\begin{eqnarray}
+\N{(\boldsymbol{\mu} | \hat{\boldsymbol{c}} , \hat{X})}
+&\propto&
+\exp{\left( -\frac{1}{2} \left\{ \left( \boldsymbol{\mu} - \hat{\boldsymbol{c}}\right)^T \hat{X}^{-1} \left( \boldsymbol{\mu} - \hat{\boldsymbol{c}}\right) \right\} \right)}
+\end{eqnarray}
+先と同様に$\left\{\cdot\right\}$の部分について考えると
+\begin{eqnarray}
+\left\{\cdot\right\} &=& \left\{ \left( \boldsymbol{\mu} - \hat{\boldsymbol{c}}\right)^T \hat{X}^{-1} \left( \boldsymbol{\mu} - \hat{\boldsymbol{c}}\right) \right\} \\
+&=&
+\boldsymbol{\mu}^T \hat{X}^{-1}\boldsymbol{\mu} -2\boldsymbol{\mu}^T \hat{X}^{-1}\hat{\boldsymbol{c}} + \hat{\boldsymbol{c}}^T \hat{X}^{-1} \hat{\boldsymbol{c}}
+\end{eqnarray}
+ここで，式を見比べると，
+\begin{eqnarray}
+\hat{X}^{-1} &=& \Sigma^{-1} + X^{-1}\\
+\hat{X}^{-1}\hat{\boldsymbol{c}} &=& \Sigma^{-1}\boldsymbol{x} + X^{-1}\boldsymbol{c}
+\end{eqnarray}
+より，
+\begin{eqnarray}
+\hat{X} &=& \left\{ \Sigma^{-1} + X^{-1} \right\}^{-1}\\
+&=& \Sigma \left(\Sigma + X\right)^{-1} X\\
+&=&X \left(\Sigma + X\right)^{-1} \Sigma\\
+\hat{\boldsymbol{c}} &=& \hat{X}\left(\Sigma^{-1}\boldsymbol{x} + X^{-1}\boldsymbol{c} \right)\\
+&=& X\left( \Sigma + X \right)^{-1}\boldsymbol{x} + \Sigma\left( \Sigma + X \right)^{-1}\boldsymbol{c}
+\end{eqnarray}
+よって，
+\begin{screen}
+\begin{eqnarray}
+\N{(\boldsymbol{x} | \boldsymbol{\mu}, \Sigma)}
+\times
+\N{(\boldsymbol{\mu} | \boldsymbol{c}, X)}
+&\propto&
+\N{(\boldsymbol{\mu} | \hat{\boldsymbol{c}}, \hat{X})}
+\end{eqnarray}
+ただし，
+\begin{eqnarray}
+\hat{X} &=& \left\{ \Sigma^{-1} + X^{-1} \right\}^{-1}\\
+&=& \Sigma \left(\Sigma + X\right)^{-1} X\\
+&=&X \left(\Sigma + X\right)^{-1} \Sigma\\
+\hat{\boldsymbol{c}} &=& \hat{X}\left(\Sigma^{-1}\boldsymbol{x} + X^{-1}\boldsymbol{c} \right)\\
+&=& X\left( \Sigma + X \right)^{-1}\boldsymbol{x} + \Sigma\left( \Sigma + X \right)^{-1}\boldsymbol{c}
+\end{eqnarray}
+\end{screen}
+\end{document}

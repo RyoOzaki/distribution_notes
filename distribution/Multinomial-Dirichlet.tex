@@ -1,0 +1,20 @@
+\documentclass[a4j]{jarticle}
+\input{../preamble}
+
+\begin{document}
+\section{多項分布とディリクレ分布}
+\begin{eqnarray}
+\Multi{( \boldsymbol{m} | \boldsymbol{\mu}, N )} \times \Dir{(\boldsymbol{\mu} | \boldsymbol{\alpha})}
+&\propto& \prod_{k=1}^{K}{\mu_k^{m_k}} \times \prod_{k=1}^{K}{\mu_k^{\alpha_k - 1}}\\
+&=& \prod_{k=1}^{K}{\mu_k^{(m_k + \alpha_k)-1}}\\
+&\propto& \Dir{(\boldsymbol{\mu} | \boldsymbol{
+m} + \boldsymbol{\alpha})}
+\end{eqnarray}
+よって，
+\begin{screen}
+\begin{eqnarray}
+\Multi{( \boldsymbol{m} | \boldsymbol{\mu}, N )} \times \Dir{(\boldsymbol{\mu} | \boldsymbol{\alpha})} &\propto& \Dir{(\boldsymbol{\mu} | \boldsymbol{
+m} + \boldsymbol{\alpha})}
+\end{eqnarray}
+\end{screen}
+\end{document}

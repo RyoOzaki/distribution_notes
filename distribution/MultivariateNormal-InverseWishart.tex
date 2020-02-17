@@ -1,0 +1,42 @@
+\documentclass[a4j]{jarticle}
+
+\input{../preamble}
+
+\begin{document}
+
+\section{多変量ガウス分布と逆ウィシャート分布(分散共分散)}
+平均は固定された状態であることに注意する．
+
+\begin{eqnarray}
+\N{(\boldsymbol{x} | \boldsymbol{\mu}, \Sigma)} \times \InvW(\Sigma | X, p, n)
+&\propto&
+|\Sigma|^{-\frac{1}{2}} \exp{\left( -\frac{1}{2} \left( \boldsymbol{x} - \boldsymbol{\mu}\right)^T \Sigma^{-1} \left( \boldsymbol{x} - \boldsymbol{\mu}\right) \right)} \nonumber\\
+&&\times |\Sigma|^{-\frac{n+p+1}{2}}\exp{\left(-\frac{1}{2}  \textrm{tr}(X \Sigma^{-1})\right)}\\
+&=& |\Sigma|^{-\frac{(n+1)+p+1}{2}} \nonumber \\
+&&\times \exp{ \left( -\frac{1}{2} \left( \boldsymbol{x} - \boldsymbol{\mu}\right)^T \Sigma^{-1} \left( \boldsymbol{x} - \boldsymbol{\mu}\right) -\frac{1}{2}  \textrm{tr}(X \Sigma^{-1})\right) }\\
+&=& |\Sigma|^{-\frac{(n+1)+p+1}{2}} \nonumber \\
+&&\times \exp{ \left( -\frac{1}{2} \left\{ \left( \boldsymbol{x} - \boldsymbol{\mu}\right)^T \Sigma^{-1} \left( \boldsymbol{x} - \boldsymbol{\mu}\right) + \textrm{tr}(X \Sigma^{-1}) \right\} \right) }\\
+&=& |\Sigma|^{-\frac{(n+1)+p+1}{2}}\nonumber \\
+&&\times \exp{ \left( -\frac{1}{2} \left\{ \textrm{tr}\left( \left( \boldsymbol{x} - \boldsymbol{\mu}\right)^T \Sigma^{-1} \left( \boldsymbol{x} - \boldsymbol{\mu}\right) \right) + \textrm{tr}(X \Sigma^{-1})\right\} \right) }\\
+&=& |\Sigma|^{-\frac{(n+1)+p+1}{2}} \nonumber \\
+&&\times \exp{ \left( -\frac{1}{2} \left\{ \textrm{tr}\left( \left( \boldsymbol{x} - \boldsymbol{\mu}\right) \left( \boldsymbol{x} - \boldsymbol{\mu}\right)^T \Sigma^{-1} \right) + \textrm{tr}(X \Sigma^{-1})\right\} \right) }\\
+&=& |\Sigma|^{-\frac{(n+1)+p+1}{2}} \nonumber \\
+&&\times \exp{ \left( -\frac{1}{2} \textrm{tr}\left\{ \left( \boldsymbol{x} - \boldsymbol{\mu}\right) \left( \boldsymbol{x} - \boldsymbol{\mu}\right)^T \Sigma^{-1} + X \Sigma^{-1} \right\} \right) }\\
+&=& |\Sigma|^{-\frac{(n+1)+p+1}{2}} \nonumber \\
+&&\times \exp{ \left( -\frac{1}{2}  \textrm{tr} \left\{ \left( \left( \boldsymbol{x} - \boldsymbol{\mu}\right) \left(\boldsymbol{x} - \boldsymbol{\mu}\right)^T + X \right)\Sigma^{-1} \right\} \right) }\\
+&\propto& \InvW{\left( \Sigma \relmiddle| \left( \boldsymbol{x} - \boldsymbol{\mu}\right) \left(\boldsymbol{x} - \boldsymbol{\mu}\right)^T + X, p, n + 1 \right)}
+\end{eqnarray}
+よって
+\begin{screen}
+\begin{eqnarray}
+\N{(\boldsymbol{x} | \boldsymbol{\mu}, \Sigma)} \times \InvW(\Sigma | X, p, n)
+&\propto& 
+\InvW{\left( \Sigma | \hat{X}, p, \hat{n} \right)}
+\end{eqnarray}
+ただし
+\begin{eqnarray}
+\hat{X} &=& \left( \boldsymbol{x} - \boldsymbol{\mu}\right) \left(\boldsymbol{x} - \boldsymbol{\mu}\right)^T + X\\
+\hat{n} &=& n + 1
+\end{eqnarray}
+\end{screen}
+\end{document}

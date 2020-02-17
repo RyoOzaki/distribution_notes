@@ -1,0 +1,20 @@
+\documentclass[a4j]{jarticle}
+\input{../preamble}
+
+\begin{document}
+\section{多点ポアソン分布とガンマ分布}
+\begin{eqnarray}
+\prod_{n=1}^{N}{\Po{(x_n | \lambda)}} \times \Gamma(\lambda | a, b)
+&\propto& \prod_{n=1}^{N}{\left\{ \lambda^{x_n} \exp{(-\lambda)} \right\}} \times \lambda^{a-1} \exp{(-b \lambda)}\\
+&=& \lambda^{\sum_{n=1}^{N}{x_n}} \exp{(-N \lambda)} \times \lambda^{a-1} \exp{(-b \lambda)}\\
+&=& \lambda^{(a+\sum_{n=1}^{N}{x_n})-1} \exp{\left\{ -(b + N) \lambda \right\}}
+\end{eqnarray}
+よって，
+\begin{screen}
+\begin{eqnarray}
+\Po{(x | \lambda)} \times \Gamma(\lambda | a, b)
+&\propto&
+\Gamma(\lambda | a + \sum_{n=1}^{N}{x_n}, b + N)
+\end{eqnarray}
+\end{screen}
+\end{document}

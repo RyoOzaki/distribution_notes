@@ -1,0 +1,19 @@
+\documentclass[a4j]{jarticle}
+\input{../preamble}
+
+\begin{document}
+\section{ポアソン分布とガンマ分布}
+\begin{eqnarray}
+\Po{(x | \lambda)} \times \Gamma(\lambda | a, b)
+&\propto& \lambda^x \exp{(-\lambda)} \times \lambda^{a-1} \exp{(-b \lambda)}\\
+&=& \lambda^{(a+x)-1} \exp{\left\{ -(b + 1) \lambda \right\}}
+\end{eqnarray}
+よって，
+\begin{screen}
+\begin{eqnarray}
+\Po{(x | \lambda)} \times \Gamma(\lambda | a, b)
+&\propto&
+\Gamma(\lambda | a + x, b + 1)
+\end{eqnarray}
+\end{screen}
+\end{document}
